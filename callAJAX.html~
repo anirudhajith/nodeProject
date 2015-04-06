@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html ng-app="tableJson">
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>nodeJS + postGreSQL + AJAX Test</title>
+        <!-- <script src="jquery.min.js"></script> -->
+        
+        <script>
+        
+function callAJAX() {
+/*  console.log("calling...");
+  xmlhttp=new XMLHttpRequest({mozSystem: true});
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      //document.getElementById("jsonbox").innerHTML = xmlhttp.responseText;
+      var tabl = xmlhttp.responseText;
+      console.log(tabl);
+      populate(tabl);
+    }
+  }
+  xmlhttp.open("GET","http://127.0.0.1:8000/",true);
+  xmlhttp.send();
+}*/
+
+var tableApp = angular.module('tableJson', []);   
+tableApp.controller('tableJsonCtrl', function ($scope, $http) {
+ $http.get('http://127.0.0.1:8000/').success(function(data) {
+$scope.people = data;
+}); 
+$scope.orderProp = 'name';
+});
+}
+
+        </script>
+        
+    
+    </head>
+     <body>
+        <input type="button" value="Get data" onclick="callAJAX()"/>
+        <div ng-controller="tableJsonCtrl">
+
+            <table>
+            <tr>
+                <th>Name</th>
+                <th>House No</th>
+                <th>DOB</th>
+            </tr>
+              <tr ng-repeat="x in people">
+                <td>{{ x.name }}</td>
+                <td>{{ x.houseno }}</td>
+                <td>{{ x.dob }}</td>
+              </tr>
+            </table>
+
+        </div>
+
+    </body>
+</html>

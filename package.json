@@ -1,0 +1,16 @@
+{
+  "name": "nodeApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodeTest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "filehandler": "0.0.0",
+    "serve-static": "^1.9.2"
+  }
+}
